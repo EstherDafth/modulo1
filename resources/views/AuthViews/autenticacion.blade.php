@@ -33,7 +33,7 @@
 
                 <h4>Autenticación</h4>
 
-                <form class="form-sample" id="loginForm" method="get" action="#">
+                <form class="form-sample" id="loginForm" method="post" action="{{route('autenticacion.post')}}" >
                   <div class="form-group">
                     <label for="correo">Correo electrónico</label>
                     <div class="input-group">
@@ -53,7 +53,7 @@
                   <div class="my-3">
                     <button type="submit" id="enviarFormulario" class="btn btn-block btn-primary btn-sm font-weight-medium auth-form-btn">Iniciar sesión</button>
                   </div>
-                  <div class="text-center mt-4 font-weight-light"> ¿No tienes una cuenta? <a href="../RegisterViews/registrarusuario.blade.php" class="text-primary">Crear</a>
+                  <div class="text-center mt-4 font-weight-light"> ¿No tienes una cuenta? <a href={{route("register.create")}} class="text-primary">Crear</a>
                   </div>
                 </form>
 

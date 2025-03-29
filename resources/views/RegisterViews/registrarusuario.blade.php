@@ -25,7 +25,7 @@
                         <div class="text-center font-weight-light">
                         <h4>Registro</h4><br>
                         </div>
-                        <form class="form-sample" id="signupForm" method="get" action="#">
+                        <form class="form-sample" id="signupForm" method="get" action="{{route("register.store")}}">
                             <h4>Información personal</h4>
                         <!-- Información Personal: Nombre y Apellidos -->
                         <div class="row">
@@ -155,7 +155,7 @@
                 <div class="col-lg-4 register-half-bg d-flex flex-row">
                   <p class="text-white font-weight-medium text-center flex-grow align-self-end mt-3">
                     ¿Ya tienes una cuenta?
-                  <a href="../AuthViews/autenticacion.blade.php" class="text-primary mt-2">Iniciar sesión</a>
+                  <a href="{{route('autenticacion')}}" class="text-primary mt-2">Iniciar sesión</a>
               </p>
                 </div>
               </div>
