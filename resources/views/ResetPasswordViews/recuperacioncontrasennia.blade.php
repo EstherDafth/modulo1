@@ -17,7 +17,7 @@
     <div class="container-scroller">
         <div class="container-fluid page-body-wrapper full-page-wrapper">
             <div class="content-wrapper d-flex align-items-stretch auth auth-img-bg">
-              
+
                 <div class="col-lg-12 d-flex align-items-center justify-content-center">
                     <div class="card">
                       <div class="card-body">
@@ -38,21 +38,21 @@
                               <div class="my-3">
                                 <button type="submit" id="enviarFormulario" class="btn btn-block btn-primary btn-sm font-weight-medium auth-form-btn">Solicitar una nueva contraseña</button>
                               </div>
-                              <div class="text-center mt-4 font-weight-light"> <a href="../AuthViews/autenticacion.html" class="text-primary">Iniciar sesión</a>
+                              <div class="text-center mt-4 font-weight-light"> <a class="text-primary" href="{{route('autenticacion')}}">Iniciar sesión</a>
                               </div>
                             </form>
                       </div>
                     </div>
-                  
+
                 </div>
-              
+
             </div>
             <!-- content-wrapper ends -->
         </div>
-      
+
       <!-- page-body-wrapper ends -->
     </div>
-    
+
     <script src="../../../assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
@@ -64,7 +64,7 @@
     <!-- Custom js for this page -->
     <script src="../../../assets/js/form-validationRecup.js"></script>
     <script src="../../../assets/js/bt-maxLength.js"></script>
-    
+
     <!-- container-scroller -->
     <!-- plugins:js -->
     <script src="../../../assets/vendors/js/vendor.bundle.base.js"></script>

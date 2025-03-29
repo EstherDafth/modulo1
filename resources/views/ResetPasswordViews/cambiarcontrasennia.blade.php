@@ -43,7 +43,7 @@
                             <div class="my-3">
                                 <button type="submit" id="enviarFormulario" class="btn btn-block btn-primary btn-sm font-weight-medium auth-form-btn">Cambiar Contraseña</button>
                             </div>
-                            <div class="text-center mt-4 font-weight-light"> <a href="../AuthViews/autenticacion.html" class="text-primary">Iniciar sesión</a>
+                            <div class="text-center mt-4 font-weight-light"> <a class="text-primary href="{{route('autenticacion')}}"">Iniciar sesión</a>
                             </div>
                         </form>
                     </div>

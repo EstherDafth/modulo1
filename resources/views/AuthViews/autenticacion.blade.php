@@ -48,7 +48,7 @@
                   </div>
 
                   <div class="my-2 d-flex justify-content-between align-items-center">
-                    <a href="#" class="text-center font-weight-light" data-toggle="modal" data-target="#exampleModal-4">¿Has olvidado tu contraseña?</a>
+                      <a class="text-center font-weight-light" href={{route("password.request")}}>¿Has olvidado tu contraseña?</a>
                   </div>
                   <div class="my-3">
                     <button type="submit" id="enviarFormulario" class="btn btn-block btn-primary btn-sm font-weight-medium auth-form-btn">Iniciar sesión</button>
@@ -73,55 +73,7 @@
 
       <!-- page-body-wrapper ends -->
     </div>
-   <!-- Modal de Recuperación de Contraseña -->
-    <div class="modal fade" id="exampleModal-4" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="ModalLabel">Olvidé mi contraseña</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form id="recuperacionForm">
-              <div class="form-group">
-                <label for="recipient-name" class="col-form-label">Introduzca su CURP y le enviaremos un código de confirmación para la recuperación de la contraseña.</label>
-                <label for="message-text" class="col-form-label">CURP</label>
-                <input id="curpre" class="form-control" name="curpre" type="text" placeholder="CURP">
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="submit" form="recuperacionForm" class="btn btn-success">Solicitar una nueva contraseña</button>
-            <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--Mensaje de recuperacion-->
-      <div class="modal fade" id="exampleModal-3" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="mensaje">Olvidé mi contraseña</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form >
-              <div class="form-group">
-                <label for="recipient-name" class="col-form-label">Se ha enviado .</label>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
-          </div>
-        </div>
-      </div>
-    </div>
+
 
     <!-- container-scroller -->
     <!-- plugins:js -->
