@@ -1,27 +1,27 @@
 <?php
-
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Usuario extends Model
 {
-    protected $table = 'usuarios';
-    protected $primaryKey = 'Correo';
-    public $incrementing = false;
-    protected $keyType = 'string';
+    use HasFactory;
 
+    // Nombre de la tabla
+    protected $table = 'usuarios';
+
+    // Atributos que se pueden asignar masivamente
     protected $fillable = [
-        'Correo',
-        'Nombre',
-        'contraseña',
-        'Periodo',
-        'perfil',
-        'apt_pat',
-        'apt_mat',
-        'nombre_usuario'
+        'nombre', 'a_paterno', 'a_materno', 'telefono', 'celular', 'correo_electronico'
     ];
 
-    public $timestamps = false;
-}
+    // Desactivar la protección de claves primarias en caso de que no la uses.
+    public $timestamps = false; // Si no usas `created_at` y `updated_at` en la tabla
 
+    // Relación con los roles
+    /*public function rol()
+    {
+        return $this->belongsTo(Rol::class, 'roles_tipo_id_rol');
+    }*/
+}
