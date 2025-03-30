@@ -34,6 +34,7 @@
                 <h4>Autenticación</h4>
 
                 <form class="form-sample" id="loginForm" method="post" action="{{route('autenticacion.post')}}" >
+                    @csrf
                   <div class="form-group">
                     <label for="correo">Correo electrónico</label>
                     <div class="input-group">
