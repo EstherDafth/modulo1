@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -28,9 +29,12 @@ Route::prefix('/autenticacion')->group(function(){
     Route::get('/logout', [AuthController ::class, 'logout'])->name('logout');
 });
 
-Route::prefix("profile")->group(function(){{
-    Route::get('/', [ProfileController::class, 'showProfile'])->name('profile.show');
-}});
+Route::prefix("profile")->group(function() {
+    Route::get('/', [ProfileController::class, 'showProfileForm'])->name('profile.show');
+    Route::get('/{id}/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/{id}', [ProfileController::class, 'update'])->name('profile.update');
+});
+
 
 Route::prefix('/password')->group(function(){//Rutas para la recuperacion de contraseñas
     //Rutas para la recuperacion de contraseñas
@@ -42,14 +46,17 @@ Route::prefix('/password')->group(function(){//Rutas para la recuperacion de con
 
 });
 
-Route::prefix('/register')->group(function(){
-    /*Pao 1*/Route::get('/', [RegisterController::class, 'create'])->name('register.create');
-    /*Pao 2*/Route::post('/post', [RegisterController::class, 'store'])->name('register.store');
-    /*Pao 3*/Route::get('/{user}', [RegisterController::class, 'register'])->name('register.show');
-    Route::get('/{user}edit', [RegisterController::class, 'edit'])->name('register.edit');
+Route::prefix('register')->group(function() {
+    Route::get('/', [RegisterController::class, 'create'])->name('register.create');
+    Route::post('/', [RegisterController::class, 'store'])->name('register.store');
+    Route::get('/{user}', [RegisterController::class, 'register'])->name('register.show');
+    Route::get('/{user}/edit', [RegisterController::class, 'edit'])->name('register.edit');
     Route::put('/{user}', [RegisterController::class, 'update'])->name('register.update');
     Route::delete('/{user}', [RegisterController::class, 'destroy'])->name('register.destroy');
+
 });
+
+
 
 // Rutas para la gestión de usuarios
 //Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios.index');
@@ -58,3 +65,4 @@ Route::prefix('/register')->group(function(){
 //Route::put('/usuarios/{correo}', [UsuarioController::class, 'update'])->name('usuarios.update');
 //Route::delete('/usuarios/{correo}', [UsuarioController::class, 'destroy'])->name('usuarios.destroy');
 //
+

@@ -30,7 +30,7 @@
         },
         curpre: {
           required: true,
-          curp: true 
+          curp: true
         },
         agree: "required"
       },
@@ -44,7 +44,7 @@
           minlength: "Su contraseña debe tener al menos 5 caracteres",
           equalTo: "Ingrese la misma contraseña que la anterior"
         },
-        curpre: "Por favor, ingresa una CURP válida", 
+        curpre: "Por favor, ingresa una CURP válida",
         agree: "Acepte nuestra política"
       },
       errorPlacement: function(label, element) {

@@ -1,13 +1,7 @@
-(function($) { 
+(function($) {
   'use strict';
 
-  $.validator.setDefaults({
-    submitHandler: function() {
-      alert("Formulario enviado!");
-    }
-  });
-
-  $(function() {
+    $(function() {
 
     // Validar el formulario de registro de usuario
     $("#loginForm").validate({
@@ -22,7 +16,7 @@
         },
         agree: "required"
       },
-      messages: { 
+      messages: {
         contraseña: {
           required: "Ingrese una contraseña",
           minlength: "Su contraseña debe tener al menos 5 caracteres"
@@ -42,6 +36,5 @@
     });
   });
 })(jQuery);
-
 
 

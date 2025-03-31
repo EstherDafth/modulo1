@@ -24,6 +24,7 @@
                         <div class="text-center font-weight-light">
                           <div class="brand-logo">
                               <img src="../assets/images/logo.png" alt="logo" style="width: 60px; height: 50px;"> H20-Admin
+                              @csrf
                           </div>
                             <p class="login-box-msg">Introduzca su CURP y le enviaremos un código de confirmación <br>
                               para la recuperación de la contraseña.</p>
@@ -32,7 +33,7 @@
                               <div class="form-group">
                                 <label for="correo">Nueva contraseña</label>
                                 <div class="input-group">
-                                  <input id="curpre" class="form-control w-100" name="curpre" type="password" placeholder="CURP">
+                                  <input id="curpre" class="form-control w-100" name="curpre" type="string" placeholder="CURP">
                                 </div>
                               </div>
                               <div class="my-3">

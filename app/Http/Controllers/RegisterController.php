@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ConfirmarCorreoMailable;
+use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
@@ -15,59 +19,65 @@ class RegisterController extends Controller
 
     public function store(Request $request)
     {
-        $nombre = $request->nombre;
-        $correo = $request->correo_electronico;
-        $usuario = $request->nombre_usuario;
-        $contrasennia = $request->contraseña;
-        $contraseniaCifrada = Hash::make($contrasennia);
-        $MensajeError = "";
-
         try {
-            DB::connection('mysql')
-                ->table('usuarios')
-                ->insert([
-                    'nombre' => $nombre,
-                    'a_paterno' => $request->a_paterno,
-                    'a_materno' => $request->a_materno,
-                    'telefono' => $request->telefono,
-                    'celular' => $request->celular,
-                    'correo_electronico' => $correo,
-                    'contraseña' => $contraseniaCifrada, // Contraseña cifrada
-                    'roles_tipo_id_rol' => $request->roles_tipo_id_rol,
-                    'activo' => 0 // Usuario inactivo hasta confirmación
-                ]);
+            // Validación de los datos
+            $validatedData = $request->validate([
+                'nombre' => 'required|string|max:255',
+                'apellidos' => 'required|string|max:255',
+                'telefono' => 'nullable|string|max:10',
+                'celular' => 'required|string|max:10',
+                'curp' => 'required|string|max:18',
+                'nombre_usuario' => 'required|string|max:255|unique:usuario,nombre_usuario',
+                'correo_electronico' => 'required|email|max:255|unique:usuario,correo_electronico',
+                'contrasennia' => 'required|string|min:6|confirmed', // Confirmación de la contraseña
+            ]);
 
-            $MensajeError = "Registro exitoso";
+            // Asignación de variables
+            $nombre = $validatedData['nombre'];
+            $apellidos = $validatedData['apellidos'];
+            $telefono = $validatedData['telefono'];
+            $celular = $validatedData['celular'];
+            $curp = $validatedData['curp'];
+            $nombre_usuario = $validatedData['nombre_usuario'];
+            $correo_electronico = $validatedData['correo_electronico'];
+            $contrasennia = Hash::make($validatedData['contrasennia']); // Cifrar la contraseña
 
-            // Enviar correo de confirmación
-            Mail::to($correo)
-                ->send(new ConfirmarCorreoMailable($nombre, $correo));
+            // Crear nuevo usuario
+            $usuario = new Usuario();
+            $usuario->nombre = $nombre;
+            $usuario->apellidos = $apellidos;
+            $usuario->telefono = $telefono;
+            $usuario->celular = $celular;
+            $usuario->curp = $curp;
+            $usuario->nombre_usuario = $nombre_usuario;
+            $usuario->correo_electronico = $correo_electronico;
+            $usuario->contrasennia = $contrasennia;
+            $usuario->activo = 1;
+            $usuario->id_rol = 1; // Perfil por defecto
 
-            return redirect('/login')
-                ->with('sessionInsertado', 'true')
-                ->with('mensaje', $MensajeError);
-
-        } catch (\Swift_TransportException $e) {
-            return redirect('/register')
-                ->with('sessionInsertado', 'false')
-                ->with('mensaje', "Error al enviar el correo.");
+            // Guardar en la base de datos
+            if ($usuario->save()) {
+                return response()->json(['message' => 'Usuario registrado con éxito'], 201);
+            } else {
+                return response()->json(['error' => 'No se pudo registrar el usuario'], 500);
+            }
         } catch (\Exception $e) {
-            return redirect('/register')
-                ->with('sessionInsertado', 'false')
-                ->with('mensaje', "Hubo un error en el servidor.");
+            return response()->json(['error' => 'Error al registrar el usuario: ' . $e->getMessage()], 500);
         }
     }
 
     public function ConfirmMail($correo)
     {
-        // Activar la cuenta del usuario al confirmar el correo
-        DB::connection('mysql')
-            ->table('usuarios')
-            ->where('correo_electronico', '=', $correo)
+        //echo  "saludos $correo";
+        DB::connection('mysql')->
+        table('usuarios')
+            ->where('correo_electronico','=', $correo)
             ->update(['activo' => 1]);
 
-        return view('RegisterViews.mensajecorreoconfirmado', ['correo' => $correo]);
+
+        return view('RegisterViews.mensajecorreoconfirmado',['correo' => $correo]);
     }
+
 
     // Actualizar un usuario
     public function update(Request $request, $correo)
@@ -99,4 +109,16 @@ class RegisterController extends Controller
 
         return response()->json(['message' => 'Usuario eliminado correctamente'], 200);
     }
+
+    public function testConnection()
+    {
+        dd(DB::connection()->getPdo());
+    }
+    public function __construct()
+    {
+        $this->middleware('guest')->except('store');
+    }
+
+
 }
+

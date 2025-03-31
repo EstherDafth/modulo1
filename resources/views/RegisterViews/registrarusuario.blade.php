@@ -4,7 +4,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Connect Plus</title>
+      <meta name="csrf-token" content="{{ csrf_token() }}">
+      <title>Connect Plus</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="../assets/vendors/mdi/css/materialdesignicons.min.css" />
     <link rel="stylesheet" href="../assets/vendors/flag-icon-css/css/flag-icon.min.css" />
@@ -25,7 +26,8 @@
                         <div class="text-center font-weight-light">
                         <h4>Registro</h4><br>
                         </div>
-                        <form class="form-sample" id="signupForm" method="get" action="{{route("register.store")}}">
+                        <form class="form-sample" id="signupForm" method="POST" action="{{route("register.store")}}">
+                            @csrf
                             <h4>Información personal</h4>
                         <!-- Información Personal: Nombre y Apellidos -->
                         <div class="row">
@@ -33,7 +35,7 @@
                               <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Nombre</label>
                                 <div class="col-sm-9">
-                                  <input id="firstname" class="form-control" name="firstname" type="text" placeholder="Nombre">
+                                  <input id="firstname" class="form-control" name="nombre" type="text" placeholder="Nombre">
                                 </div>
                               </div>
                             </div>
@@ -41,7 +43,7 @@
                               <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Apellidos</label>
                                 <div class="col-sm-9">
-                                  <input id="lastname" class="form-control" name="lastname" type="text" placeholder="Apellidos">
+                                  <input id="lastname" class="form-control" name="apellidos" type="text" placeholder="Apellidos">
                                 </div>
                               </div>
                             </div>
@@ -105,7 +107,7 @@
                               <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Nombre de Usuario</label>
                                 <div class="col-sm-9">
-                                  <input id="username" class="form-control" name="username" type="text" placeholder="Nombre de Usuario">
+                                  <input id="username" class="form-control" name="nombre_usuario" type="text" placeholder="Nombre de Usuario">
                                 </div>
                               </div>
                             </div>
@@ -113,7 +115,7 @@
                               <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Correo</label>
                                 <div class="col-sm-9">
-                                  <input id="email" class="form-control" name="email" type="email" placeholder="Correo">
+                                  <input id="email" class="form-control" name="correo_electronico" type="email" placeholder="Correo">
                                 </div>
                               </div>
                             </div>
@@ -124,7 +126,7 @@
                               <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Contraseña</label>
                                 <div class="col-sm-9">
-                                  <input id="password" class="form-control" name="password" type="password" placeholder="Contraseña">
+                                  <input id="contrasennia" class="form-control" name="contrasennia" type="password" placeholder="Contraseña">
                                 </div>
                               </div>
                             </div>
@@ -132,7 +134,7 @@
                               <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Confirmar Contraseña</label>
                                 <div class="col-sm-9">
-                                  <input id="confirm_password" class="form-control" name="confirm_password" type="password" placeholder="Confirmar Contraseña">
+                                  <input id="contrasennia_confirmation" class="form-control" name="contrasennia_confirmation" type="password" placeholder="Confirmar Contraseña">
                                 </div>
                               </div>
                             </div>
@@ -165,6 +167,9 @@
 
       <!-- page-body-wrapper ends -->
     </div>
+    <script>
+        var registerUrl = "{{ route('register.store') }}";
+    </script>
 
     <script src="../../../assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->

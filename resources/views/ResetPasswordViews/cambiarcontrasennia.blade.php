@@ -24,6 +24,7 @@
                         <div class="text-center font-weight-light">
                             <div class="brand-logo">
                                 <img src="../assets/images/logo.png" alt="logo" style="width: 60px; height: 50px;"> H20-Admin
+                                @csrf
                             </div>
                             <p class="login-box-msg">Estás a solo un paso de tu nueva contraseña, recupera <br> tu contraseña ahora.</p>
                         </div>
